@@ -15,18 +15,19 @@ public class StatsService {
 
     public float calcAverageSumAllSales(int[] sumSale) { //средняя сумма продаж в месяц
 
-        int sumAllSales = 0;
+        int sumAllSales = calcSumAllSales(sumSale);
 
-        for (int i = 0; i < sumSale.length; i++) {
+/*        for (int i = 0; i < sumSale.length; i++) {
 
             sumAllSales = sumAllSales + sumSale[i];
-        }
+        }*/
+
 
         float averageSum = (float) sumAllSales / sumSale.length;
         return (float) (Math.rint(100 * averageSum) / 100);
     }
 
-    public int maxSales(int [] sales) { // номер месяца, в котором был пик продаж
+    public int maxSales(int[] sales) { // номер месяца, в котором был пик продаж
         int maxMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
@@ -38,7 +39,7 @@ public class StatsService {
         return maxMonth + 1;
     }
 
-    public int minSales(int [] sales) { // номер месяца, в котором был минимум продаж
+    public int minSales(int[] sales) { // номер месяца, в котором был минимум продаж
         int minMonth = 0;
 
         for (int i = 0; i < sales.length; i++) {
@@ -52,13 +53,14 @@ public class StatsService {
 
     public int numberMonthOnSalesBelowAwerege(int[] sales) { //продажи ниже средних
         int countMinMonth = 0;
-        int sumAllSales = 0;
+        //int sumAllSales = 0;
 
-        for (int i = 0; i < sales.length; i++) {
+        /*for (int i = 0; i < sales.length; i++) {
             sumAllSales = (int) (sumAllSales + sales[i]);
         }
 
-        float averageSum = (float) sumAllSales / sales.length;
+        float averageSum = (float) sumAllSales / sales.length;*/
+        float averageSum = calcAverageSumAllSales(sales);
 
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] < averageSum) {
@@ -71,13 +73,15 @@ public class StatsService {
 
     public int numberMonthOnSalesAboveAwerege(int[] sales) { //продажи выше средних
         int countMaxMonth = 0;
-        int sumAllSales = 0;
+       //int sumAllSales = 0;
 
-        for (int i = 0; i < sales.length; i++) {
+/*        for (int i = 0; i < sales.length; i++) {
             sumAllSales = (int) (sumAllSales + sales[i]);
         }
 
-        float averageSum = (float) sumAllSales / sales.length;
+        float averageSum = (float) sumAllSales / sales.length;*/
+
+        float averageSum = calcAverageSumAllSales(sales);
 
         for (int i = 0; i < sales.length; i++) {
             if (sales[i] > averageSum) {
